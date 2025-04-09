@@ -44,6 +44,10 @@ public class RateLimitRule {
         return requestType;
     }
 
+    public boolean hasExceededLimit(long requestCount) {
+        return requestCount > allowedNumberOfRequests;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -54,6 +58,14 @@ public class RateLimitRule {
                 && requestType.equals(that.requestType)
                 && allowedNumberOfRequests.equals(that.allowedNumberOfRequests)
                 && timeInterval == that.timeInterval;
+    }
+
+    public RateLimitTimeInterval getTimeInterval() {
+        return timeInterval;
+    }
+
+    public Integer getAllowedNumberOfRequests() {
+        return allowedNumberOfRequests;
     }
 
     @Override
