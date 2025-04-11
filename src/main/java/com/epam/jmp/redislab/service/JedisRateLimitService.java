@@ -91,12 +91,12 @@ public class JedisRateLimitService implements RateLimitService {
     }
 
     private boolean isFieldUniqueWhenRuleEmpty(Optional<String> descriptorField, Optional<String> ruleField) {
-//        return ruleField.isPresent() && ruleField.get().isEmpty()
-//                && descriptorField.isPresent()
-//                && rules.stream()
-//                .noneMatch(r -> descriptorField.get().equals(r.getAccountId().orElse(""))
-//                        || descriptorField.get().equals(r.getClientIp().orElse(""))
-//                        || descriptorField.get().equals(r.getRequestType().orElse("")));
-    return false;
+        return ruleField.isPresent() && ruleField.get().isEmpty()
+                && descriptorField.isPresent()
+                && rateLimitRules.stream()
+                .noneMatch(r -> descriptorField.get().equals(r.getAccountId().orElse(""))
+                        || descriptorField.get().equals(r.getClientIp().orElse(""))
+                        || descriptorField.get().equals(r.getRequestType().orElse("")));
+
     }
 }
